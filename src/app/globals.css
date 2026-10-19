@@ -1,0 +1,402 @@
+@import "tailwindcss";
+
+/* Excel Tutors Academy design tokens — navy, royal blue, white, controlled gold. */
+@theme {
+  --color-navy-950: #050f26;
+  --color-navy-900: #081634;
+  --color-navy-800: #0b1f4b;
+  --color-navy-700: #122a63;
+  --color-navy-600: #1b3a7e;
+  --color-royal-700: #1a45c4;
+  --color-royal-600: #1d4ed8;
+  --color-royal-500: #2f66ea;
+  --color-royal-100: #dbe6ff;
+  --color-royal-50: #eef3ff;
+  --color-gold-600: #a8841e;
+  --color-gold-500: #c8a02f;
+  --color-gold-400: #d8b650;
+  --color-gold-100: #f7efd6;
+  --color-gold-50: #fcf8ec;
+  --color-surface: #f5f7fc;
+  --color-ink: #0d1733;
+  --color-muted: #5b6784;
+  --color-line: #e3e8f2;
+  --color-success-600: #047857;
+  --color-success-50: #ecfdf5;
+  --color-danger-600: #c62828;
+  --color-danger-50: #fef2f2;
+  --color-warn-600: #b45309;
+  --color-warn-50: #fffbeb;
+
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-display: var(--font-playfair), Georgia, "Times New Roman", serif;
+
+  --shadow-card: 0 1px 2px rgb(13 23 51 / 0.04), 0 4px 16px -4px rgb(13 23 51 / 0.08);
+  --shadow-lift: 0 12px 40px -12px rgb(11 31 75 / 0.28);
+  --radius-xl: 0.9rem;
+  --radius-2xl: 1.25rem;
+}
+
+:root {
+  color-scheme: light;
+  --bg: #ffffff;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Accessible, visible focus everywhere. */
+:focus-visible {
+  outline: 3px solid var(--color-royal-500);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  background: var(--color-navy-800);
+  color: white;
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Rich lesson / question text */
+.prose-fodan {
+  line-height: 1.75;
+  font-size: 1rem;
+}
+.prose-fodan h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-navy-800);
+  margin: 1.6rem 0 0.6rem;
+}
+.prose-fodan h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 1.2rem 0 0.4rem;
+}
+.prose-fodan p {
+  margin: 0.6rem 0;
+}
+.prose-fodan ul,
+.prose-fodan ol {
+  margin: 0.6rem 0 0.6rem 1.3rem;
+}
+.prose-fodan ul {
+  list-style: disc;
+}
+.prose-fodan ol {
+  list-style: decimal;
+}
+.prose-fodan li {
+  margin: 0.25rem 0;
+}
+.prose-fodan .table-wrap {
+  margin: 0.8rem 0;
+  overflow-x: auto;
+  border: 1px solid var(--color-line);
+  border-radius: 0.75rem;
+}
+.prose-fodan table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.prose-fodan th,
+.prose-fodan td {
+  padding: 0.45rem 0.7rem;
+  border-bottom: 1px solid var(--color-line);
+  text-align: left;
+  vertical-align: top;
+  white-space: nowrap;
+}
+.prose-fodan th {
+  background: var(--color-royal-50);
+  color: var(--color-navy-800);
+  font-weight: 700;
+}
+.prose-fodan tbody tr:last-child td {
+  border-bottom: 0;
+}
+.prose-fodan code {
+  background: var(--color-royal-50);
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.3rem;
+}
+.katex {
+  font-size: 1.06em;
+}
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25rem 0;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white;
+  }
+  .print-card {
+    box-shadow: none !important;
+    border: 1px solid #ccd !important;
+  }
+}
+
+/* ---- Homepage: deep "glow" style (Homepage & Content → Homepage → Appearance) ---- */
+.text-gold-gradient {
+  background: linear-gradient(100deg, #f4dc8c 0%, var(--color-gold-400) 35%, #fff3c4 55%, var(--color-gold-500) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.glow-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(70px);
+  pointer-events: none;
+}
+.glass {
+  background: rgb(255 255 255 / 0.05);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.1), 0 20px 50px -20px rgb(0 0 0 / 0.6);
+  backdrop-filter: blur(6px);
+}
+.glow-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+.glow-card:hover {
+  transform: translateY(-4px);
+  box-shadow: inset 0 0 0 1px rgb(216 182 80 / 0.45), 0 0 0 1px rgb(216 182 80 / 0.15), 0 24px 60px -18px rgb(47 102 234 / 0.55);
+}
+.gold-frame {
+  box-shadow: 0 0 0 1px rgb(216 182 80 / 0.55), 0 0 0 8px rgb(216 182 80 / 0.08), 0 30px 80px -20px rgb(47 102 234 / 0.6);
+}
+@keyframes fodan-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(3%, -5%, 0) scale(1.12); }
+}
+@keyframes excel-shimmer {
+  to { background-position: 200% center; }
+}
+@keyframes fodan-rise {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: none; }
+}
+.fx .glow-orb { animation: fodan-drift 14s ease-in-out infinite; }
+.fx .text-gold-gradient { background-size: 200% auto; animation: excel-shimmer 7s linear infinite; }
+.fx .rise { animation: fodan-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+/* Sections ease in as they scroll into view where the browser supports it; elsewhere they simply show. */
+@supports (animation-timeline: view()) {
+  .fx .reveal {
+    animation: fodan-rise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 45%;
+  }
+}
+
+/* Pictures and diagrams written as [[diagram: …]] / [[image: …]] (src/core/diagrams.ts). */
+.fig {
+  display: block;
+  margin: 0.9rem auto;
+  text-align: center;
+}
+.fig svg,
+.fig img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+.fig img {
+  max-height: 22rem;
+  border-radius: 0.75rem;
+}
+.fig-cap {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+.fig-emoji {
+  font-size: 2.6rem;
+  line-height: 1.25;
+  letter-spacing: 0.15em;
+}
+.fig-missing {
+  font-family: ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--color-danger-600);
+}
+
+/*
+ * Full-screen overlays (examination rules, warnings). Centred when the box fits; when it is taller
+ * than the screen it starts at the top and the overlay scrolls, so the buttons can always be reached.
+ */
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  padding: 1rem;
+  padding-top: max(1rem, env(safe-area-inset-top));
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+.overlay > * {
+  margin: auto;
+}
+/* Scrolling panels: vh first for browsers that do not know dvh. */
+.scroll-75 {
+  max-height: 75vh;
+  max-height: 75dvh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+.scroll-80 {
+  max-height: 80vh;
+  max-height: 80dvh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+/* Long words, codes and links never push a page wider than a small screen. */
+main {
+  overflow-wrap: break-word;
+}
+
+/* Certificates and report cards keep their colours on paper and fill the page. */
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  main {
+    padding: 0 !important;
+    max-width: none !important;
+  }
+  @page {
+    margin: 10mm;
+  }
+}
+
+/*
+ * Very large displays: projectors, smart TVs and 4K monitors. The whole interface is sized in rem,
+ * so raising the base size keeps text readable from across a room without any separate layout.
+ */
+@media (min-width: 1920px) {
+  html {
+    font-size: 112.5%;
+  }
+}
+@media (min-width: 2560px) {
+  html {
+    font-size: 137.5%;
+  }
+}
+@media (min-width: 3840px) {
+  html {
+    font-size: 200%;
+  }
+}
+/* Remote controls and keyboards: the focused item is always obvious. */
+@media (hover: none) and (pointer: coarse) {
+  a,
+  button,
+  summary,
+  [role="button"] {
+    min-height: 2.5rem;
+  }
+}
+/* Gentle entrance for cards, switched off for people who prefer no motion (see the rule near the top). */
+@keyframes fodan-pop {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.pop {
+  animation: fodan-pop 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.pop-2 {
+  animation-delay: 0.08s;
+}
+.pop-3 {
+  animation-delay: 0.16s;
+}
+.pop-4 {
+  animation-delay: 0.24s;
+}
+@keyframes fodan-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+.float {
+  animation: fodan-float 5s ease-in-out infinite;
+}
+
+/* [[listen: …]] buttons in lessons and questions */
+.listen { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin: 0.25rem 0; }
+.listen-btn { display: inline-flex; align-items: center; gap: 0.35rem; border-radius: 9999px; background: #10316b; color: #fff; font-weight: 700; font-size: 0.875rem; padding: 0.4rem 0.9rem; cursor: pointer; }
+.listen-btn:hover { background: #1d4ed8; }
+.listen-btn[data-playing="1"] { background: #b91c1c; }
+@media print { .listen-btn { display: none; } }

@@ -1,0 +1,55 @@
+/**
+ * School sections (class levels). Every class belongs to one section; content (topics, questions,
+ * examinations, assignments, resources) is either scoped to a section or left open to all
+ * sections (null). A student only ever sees content for their own class's section.
+ */
+export const SECTIONS = ["PRIMARY", "JUNIOR_SECONDARY", "SENIOR_SECONDARY", "OTHER"] as const;
+export type Section = (typeof SECTIONS)[number];
+
+export const SECTION_LABELS: Record<Section, string> = {
+  JUNIOR_SECONDARY: "Junior Secondary (JSS1–JSS3)",
+  SENIOR_SECONDARY: "Senior Secondary (SS1–SS3)",
+  PRIMARY: "Primary (Basic 1–Basic 6)",
+  OTHER: "Other / international",
+};
+
+export const SECTION_SHORT: Record<Section, string> = {
+  JUNIOR_SECONDARY: "JSS",
+  SENIOR_SECONDARY: "SS",
+  PRIMARY: "Primary",
+  OTHER: "Other",
+};
+
+/** Admin form choices. "ALL" = every section; "AUTO" = follow the class / topic. */
+export const SECTION_CHOICES = [
+  { value: "PRIMARY", label: SECTION_LABELS.PRIMARY },
+  { value: "JUNIOR_SECONDARY", label: SECTION_LABELS.JUNIOR_SECONDARY },
+  { value: "SENIOR_SECONDARY", label: SECTION_LABELS.SENIOR_SECONDARY },
+  { value: "ALL", label: "All sections (Primary, JSS and SS)" },
+];
+/** Short choices for list filters. */
+export const SECTION_FILTER_OPTIONS = [
+  { value: "PRIMARY", label: "Primary" },
+  { value: "JUNIOR_SECONDARY", label: "JSS" },
+  { value: "SENIOR_SECONDARY", label: "SS" },
+  { value: "ALL", label: "All sections" },
+];
+
+/** The section a standard class code belongs to: BASIC1–BASIC6, JSS1–JSS3, SS1–SS3. */
+export function sectionOfClassCode(code: string): Section {
+  const c = code.toUpperCase();
+  return c.startsWith("BASIC") ? "PRIMARY" : c.startsWith("JSS") ? "JUNIOR_SECONDARY" : "SENIOR_SECONDARY";
+}
+export const SECTION_CHOICES_AUTO = [{ value: "AUTO", label: "Follow the class / topic" }, ...SECTION_CHOICES];
+
+/** Stored value → form value. */
+export const sectionFormValue = (level: string | null | undefined) => level ?? "ALL";
+
+export function isSection(v: unknown): v is Section {
+  return typeof v === "string" && (SECTIONS as readonly string[]).includes(v);
+}
+
+/** Content scoped to a section is visible only to students in that section; null means everyone. */
+export function sectionAllows(contentSection: string | null | undefined, studentSection: string | null | undefined) {
+  return !contentSection || contentSection === studentSection;
+}
