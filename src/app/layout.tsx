@@ -8,6 +8,7 @@ import { ServiceWorker } from "@/components/service-worker";
 import { SpeakButtons } from "@/components/speak-buttons";
 import { getDefaultSchoolId, getSetting } from "@/server/settings";
 
+import { organizationJsonLd } from "@/lib/seo-kit";
 /** Backend-editable theme: optional primary/accent colours override the navy and gold tokens. */
 async function themeCss() {
   try {
@@ -57,6 +58,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en" className={`${jakarta.variable} ${playfair.variable}`}>
       <body className="min-h-dvh">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }} />
         {theme && <style dangerouslySetInnerHTML={{ __html: theme }} />}
         <a href="#main" className="skip-link">
           Skip to main content

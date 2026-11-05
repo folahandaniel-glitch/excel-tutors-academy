@@ -6,6 +6,7 @@ import { buttonClass } from "../ui/primitives";
 import { MobileNav } from "./mobile-nav";
 import { t } from "@/i18n";
 
+import { FodanCredit } from "@/components/fodan-credit";
 export const PRIMARY_NAV = [
   { href: "/", label: t("nav.home") },
   { href: "/about", label: t("nav.about") },
@@ -111,12 +112,13 @@ export async function SiteFooter() {
           <p>
             © {year} {brand.schoolName}. All rights reserved.
           </p>
-          {brand.showPoweredBy && <p className="font-medium text-white/80">{brand.poweredBy}</p>}
+          {brand.showPoweredBy && !/fodan softnet/i.test(brand.poweredBy ?? "") && <p className="font-medium text-white/80">{brand.poweredBy}</p>}
           <Link href="/backend" className="mt-0.5 text-[0.62rem] tracking-wide text-white/35 hover:text-white/80">
             Backend access
           </Link>
         </div>
       </div>
+      <FodanCredit />
     </footer>
   );
 }
