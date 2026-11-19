@@ -12,6 +12,7 @@ const ICONS = { BookOpen, MonitorCheck, Target, ClipboardCheck, LineChart, Shiel
 
 /** Founder portrait shown until a replacement is uploaded in Homepage & Content → Homepage → Founder. */
 import { HomeExtras } from "@/components/site/home-extras";
+import { HomeTryout } from "@/components/site/home-tryout";
 
 const DEFAULT_FOUNDER_PHOTO = "/brand/founder-standing.webp";
 /** Only site paths and web addresses become links; anything else is ignored. */
@@ -272,6 +273,10 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {home.tryout.enabled && home.tryout.questions.length > 0 && (
+        <HomeTryout heading={home.tryout.heading} intro={home.tryout.intro} questions={home.tryout.questions} ctaLabel={home.tryout.ctaLabel} ctaNote={home.tryout.ctaNote} />
+      )}
 
       {/* CLOSING CTA */}
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
