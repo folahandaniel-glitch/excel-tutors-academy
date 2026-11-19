@@ -115,6 +115,10 @@ export default async function HomePage() {
 
       {home.carousel.enabled && slides.length > 0 && <HomeCarousel slides={slides} seconds={home.carousel.secondsPerSlide} dark={dark} />}
 
+      {home.tryout.enabled && home.tryout.questions.length > 0 && (
+        <HomeTryout heading={home.tryout.heading} intro={home.tryout.intro} questions={home.tryout.questions} ctaLabel={home.tryout.ctaLabel} ctaNote={home.tryout.ctaNote} />
+      )}
+
       {/* STATS */}
       <section className={dark ? "bg-navy-900" : "border-b border-line bg-white"}>
         <div className={cx("mx-auto grid max-w-7xl grid-cols-2 gap-px px-0 sm:px-6 lg:grid-cols-4", dark ? "bg-white/10" : "bg-line")}>
@@ -274,9 +278,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {home.tryout.enabled && home.tryout.questions.length > 0 && (
-        <HomeTryout heading={home.tryout.heading} intro={home.tryout.intro} questions={home.tryout.questions} ctaLabel={home.tryout.ctaLabel} ctaNote={home.tryout.ctaNote} />
-      )}
 
       {/* CLOSING CTA */}
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
