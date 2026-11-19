@@ -34,8 +34,10 @@ export function HomeTryout({ heading, intro, questions, ctaLabel, ctaNote }: { h
   };
 
   return (
-    <section className="mx-auto max-w-4xl px-4 py-16 sm:px-6" aria-labelledby="tryout-h">
+    <section id="try-english" className="scroll-mt-4 border-b border-line bg-surface" aria-labelledby="tryout-h">
+    <div className="mx-auto max-w-4xl px-4 py-14 sm:px-6">
       <div className="text-center">
+        <span className="inline-block rounded-full bg-gold-50 px-3 py-1 text-xs font-bold uppercase tracking-widest text-navy-800 ring-1 ring-gold-400/50">Free preview · No sign-up needed</span>
         <h2 id="tryout-h" className="text-3xl font-extrabold tracking-tight text-navy-800 sm:text-4xl">
           {heading}
         </h2>
@@ -45,6 +47,9 @@ export function HomeTryout({ heading, intro, questions, ctaLabel, ctaNote }: { h
         <div className="flex items-center justify-between bg-navy-800 px-5 py-3 text-white">
           <span className="text-sm font-bold tracking-wide">ENGLISH LANGUAGE · CBT PREVIEW</span>
           <span className="text-sm">{done ? "Result" : `Question ${i + 1} of ${total}`}</span>
+        </div>
+        <div className="h-1.5 bg-slate-100" role="progressbar" aria-valuemin={0} aria-valuemax={total} aria-valuenow={done ? total : Object.keys(picked).length}>
+          <div className="h-full bg-gold-500 transition-all" style={{ width: `${((done ? total : Object.keys(picked).length) / total) * 100}%` }} />
         </div>
         {done ? (
           <div className="p-6 text-center sm:p-10">
@@ -115,6 +120,7 @@ export function HomeTryout({ heading, intro, questions, ctaLabel, ctaNote }: { h
           </div>
         )}
       </div>
+    </div>
     </section>
   );
 }

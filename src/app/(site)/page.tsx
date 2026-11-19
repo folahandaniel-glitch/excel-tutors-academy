@@ -68,9 +68,9 @@ export default async function HomePage() {
               <Link href="/login" className={buttonClass("white", "lg")}>
                 {home.ctaLogin}
               </Link>
-              <Link href="/login?next=/student/exams" className={buttonClass("outlineLight", "lg")}>
+              <Link href={home.tryout.enabled ? "#try-english" : "/login?next=/student/exams"} className={buttonClass("outlineLight", "lg")}>
                 <MonitorCheck className="size-5" aria-hidden />
-                {home.ctaCbt}
+                {home.tryout.enabled ? "Try 5 free questions" : home.ctaCbt}
               </Link>
             </div>
             <ul className="mt-8 grid gap-2 text-sm text-white/75 sm:grid-cols-3">
